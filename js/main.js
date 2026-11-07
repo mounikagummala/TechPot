@@ -21,6 +21,37 @@
     window.matchMedia("(min-width: 1000px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
   }
 
+
+  // scroll effects: gold progress bar, header shadow, gentle reveal of cards
+  (function () {
+    var bar = document.createElement("div"); bar.className = "progress"; bar.setAttribute("aria-hidden", "true"); document.body.appendChild(bar);
+    var hdr = document.querySelector(".header"), tick = false;
+    function onScroll() {
+      if (tick) return; tick = true;
+      requestAnimationFrame(function () {
+        var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+        bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ")";
+        if (hdr) hdr.classList.toggle("is-scrolled", window.scrollY > 8);
+        tick = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var sel = "main .head, main .card:not(.calc), main .cred, main .cta, main .igprofile, main .photo, main .certthumb, main .follow__text, main .doc__sec, main .appcard";
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel)).filter(function (e) { return !e.closest(".hero") || e.classList.contains("appcard") ? true : true; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    els.forEach(function (e) {
+      var sibs = e.parentElement ? Array.prototype.indexOf.call(e.parentElement.children, e) : 0;
+      e.style.setProperty("--rd", Math.min(sibs, 5) * 0.07 + "s");
+      var r = e.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) { e.classList.add("in"); return; }   // already on screen: no animation, no flash
+      e.classList.add("reveal"); io.observe(e);
+    });
+  })();
+
   // FAQ: only one answer open at a time
   document.querySelectorAll(".faq").forEach(function (box) {
     var all = box.querySelectorAll("details");
