@@ -100,7 +100,7 @@
         var cd = code(v.url), card = el("div", "card embed");
         if (cd) {
           var frame = el("div", "embed__frame"), f = document.createElement("iframe");
-          f.src = "https://www.instagram.com/reel/" + cd + "/embed/";
+          f.src = "https://www.instagram.com/p/" + cd + "/embed/";
           f.title = v.title || "TechPot video on Instagram";
           f.loading = "lazy"; f.setAttribute("scrolling", "no"); f.setAttribute("allowtransparency", "true"); f.setAttribute("allowfullscreen", "true");
           frame.appendChild(f); card.appendChild(frame);

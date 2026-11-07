@@ -15,7 +15,7 @@ window.TECHPOT_CONFIG = {
   // For each Reel: open it on Instagram, tap the three dots, choose "Copy link", and paste it as url.
   // Remove the // at the start of a line to switch it on. Newest first.
   videos: [
-    // { url: "https://www.instagram.com/reel/PASTE-REEL-CODE-1/", title: "Your first Reel title", note: "Banking" },
-    // { url: "https://www.instagram.com/reel/PASTE-REEL-CODE-2/", title: "Your second Reel title", note: "Banking" },
+    { url: "https://www.instagram.com/p/DfZwMX0hWHJ/", title: "Latest from TechPot", note: "Reel" },
+    { url: "https://www.instagram.com/p/DfXlsMzBCzr/", title: "TechPot Reel", note: "Reel" }
   ]
 };
