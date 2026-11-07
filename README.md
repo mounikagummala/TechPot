@@ -1,37 +1,29 @@
 # TechPot website (techpot.in)
 
-Static site for GitHub Pages: plain HTML, CSS and JavaScript, no build step.
+Static site: plain HTML, CSS and JavaScript. No build step. Hosted on Vercel, code kept on GitHub.
 
-## Pages
-- `index.html` Home, `services.html`, `tools.html` (nine calculators), `learn.html`, `videos.html`, `team.html`, `founder.html`, `contact.html`, `privacy.html`, `terms.html`, `disclaimer.html`, `404.html`
-- `site-config.js` the one file you edit for WhatsApp, email, YouTube, registrations and the **latest videos list** (all empty by default; empty items stay hidden)
-- `assets/` self-hosted fonts and images (logo, favicons, founder portrait, certificate, social preview)
-- `CNAME`, `.nojekyll`, `sitemap.xml`, `robots.txt`
+## Folder layout (names are case sensitive, keep them lowercase)
+```
+index.html  services.html  tools.html  learn.html  videos.html  team.html
+founder.html  contact.html  privacy.html  terms.html  disclaimer.html  404.html
+style.css  site-config.js  vercel.json  sitemap.xml  robots.txt  README.md
+js/        main.js  calc.js
+assets/    fonts/ (6 .woff2 files)   img/ (logo, favicons, portrait, certificate, og.png)
+```
 
-## Add a video
-Open `site-config.js` and add a line inside `videos: [ ... ]`, for example
-`{ title: "Failed transaction: what the rules say", url: "https://www.instagram.com/reel/XXXX/", note: "Banking" },`
-It then appears on Home and the Videos page. Optional `thumb: "assets/img/my-reel.jpg"` adds a thumbnail.
+## Deploy on Vercel
+1. vercel.com, Add New, Project, import the GitHub repo `TechPot`.
+2. Framework Preset: **Other**. Build Command: empty. Output Directory: empty (project root). Deploy.
+3. Project, Settings, Domains: add `techpot.in` and `www.techpot.in`. Make `techpot.in` the main one and set `www` to redirect to it.
+4. At GoDaddy DNS, use exactly the records Vercel shows for each domain (usually an A record for `@` and a CNAME for `www`). Delete the old GitHub Pages A records (185.199.108.153 to 185.199.111.153) first.
+5. Every push to `main` redeploys automatically. Other branches get their own preview link, handy for QA.
 
-## Add a team member
-Copy the Pavan block (`<article class="card member">...`) in `team.html`, change the photo, name, role and text, and place it before the "More members soon" card. Add the photo to `assets/img/`.
+## Edit without touching code: `site-config.js`
+WhatsApp, email, YouTube, registrations and the latest Instagram Reels (pasted as links, embedded automatically).
 
-## Put it on GitHub Pages
-1. Create a repository (for example `techpot-site`) and upload everything in this folder, including `CNAME` and `.nojekyll`.
-2. **Settings, Pages**: Deploy from a branch, `main`, `/ (root)`, Save.
-3. The site works at `https://YOUR-USERNAME.github.io/techpot-site/` (links are relative; only the 404 page needs the custom domain).
-
-## Connect techpot.in
-1. **Settings, Pages, Custom domain**: `techpot.in`, Save.
-2. At your domain provider add A records for `@`: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153.
-3. Add a CNAME for `www` pointing to `YOUR-USERNAME.github.io`.
-4. After DNS finishes (up to 24 hours) tick **Enforce HTTPS**. No wildcard DNS records.
-
-## Keep it honest (important)
-- The founder certificate is dated 13 Aug 2026. Certificates of practice renew each year: replace `assets/img/certificate.*` and `certificate-sm.*` and update the dates in `founder.html` after each renewal.
-- Do not describe TechPot as giving investment advice or selling insurance unless the right SEBI registration or IRDAI licence is held. If one is, add it to `registrations` in `site-config.js`.
-- Add the "Chartered Accountants" line only for team members who actually hold that qualification.
-- Verify the Telugu tagline wording on the home page with a native speaker.
-- When a Reel goes live, add it to the Learn page and link the Instagram post.
-- Branding is fixed to the TechPot logo (navy and gold). Logo files are in `assets/img/` (`logo-round.webp`, `logo-512.png`, favicons, `apple-touch-icon.png`). Replace them only if the logo itself changes.
-- On phones the site shows a bottom tab bar (Home, Services, Tools, Learn, Founder), like an app.
+## Keep it honest
+- Certificate dated 13 Aug 2026. Replace `assets/img/certificate.*` and `certificate-sm.*` and the dates in `founder.html` each year.
+- No investment advice or insurance selling claims unless the matching SEBI registration or IRDAI licence is held; list it in `site-config.js`.
+- Add the "Chartered Accountants" wording only for team members who hold the qualification.
+- Have a lawyer review `privacy.html` and `terms.html`. Update privacy if analytics are added.
+- Add a team member by copying the Pavan block in `team.html`.
