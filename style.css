@@ -658,3 +658,4 @@ a.card.topic { display: grid; }
 .cta::after { background-image: var(--ic-coin), var(--ic-pct); background-size: 110px, 64px; background-position: 64% 50%, 52% 14%; opacity: .1; }
 @media (max-width: 819px) { .cta::after { background-position: 96% 12%, 78% 90%; background-size: 90px, 54px; } }
 @media (max-width: 899px) { .hero::after { background-position: 104% 1%, 50% 99%, 62% 14%; } }
+.tile--solid { display: grid; place-items: center; flex: none; width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(180deg, var(--gold-2), var(--gold)); color: var(--navy); font-family: var(--head); font-weight: 700; font-size: 1.6rem; }
