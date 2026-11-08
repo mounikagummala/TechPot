@@ -665,3 +665,15 @@ a.card.topic { display: grid; }
 .todo__tick svg { display: block; width: 18px; height: 18px; }
 .appcard__top .pill { white-space: nowrap; flex: none; font-size: .68rem; padding: 4px 10px; }
 .appcard__title { min-width: 0; }
+/* team cards: compact horizontal profile card */
+.members { grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 18px; align-items: stretch; }
+.member { flex-direction: row; align-items: center; gap: 22px; padding: 22px; }
+.member__photo { flex: none; width: 150px; height: 150px; aspect-ratio: auto; border-radius: 22px; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--gold), var(--sh); }
+.member__photo img { object-position: center 10%; }
+.member__body { padding: 0; gap: 8px; }
+.member__body h3 { font-size: 1.25rem; }
+.member--soon { flex-direction: column; justify-content: center; align-items: center; min-height: 0; padding: 22px; }
+@media (max-width: 560px) {
+  .member { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px; }
+  .member__photo { width: 112px; height: 112px; border-radius: 50%; }
+}
